@@ -34,3 +34,18 @@ packages
 ├── config         # Shared tsconfig
 └── env            # Environment variables
     └── src
+
+## Software Architecture
+
+WIP
+
+## Development
+
+| Command                | Description        |
+| ---------------------- | ------------------ |
+| `pnpm run dev`         | Start all apps     |
+| `pnpm run build`       | Build all apps     |
+| `pnpm run dev:web`     | Start web only     |
+| `pnpm run dev:native`  | Start native only  |
+| `pnpm run dev:setup`   | Configure Convex   |
+| `pnpm run check-types` | Typecheck all apps |

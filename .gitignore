@@ -2,6 +2,12 @@
 node_modules
 .pnp
 .pnp.js
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
 # Build outputs
 dist
@@ -11,6 +17,7 @@ build
 # Environment variables
 .env
 .env*.local
+*.pem
 
 # IDEs and editors
 .vscode/*
@@ -48,3 +55,27 @@ coverage
 .cache
 tmp
 temp
+
+# Expo / React Native
+.expo
+.metro-health-check*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build
+
+# Deployment
+.vercel
+.netlify
+.wrangler
+.dev.vars*
+
+# Generated / dev caches
+packages/backend/convex/_generated
+packages/backend/convex/README.md
+apps/native/expo-env.d.ts
+apps/web/.tanstack
+apps/web/src/routeTree.gen.ts
