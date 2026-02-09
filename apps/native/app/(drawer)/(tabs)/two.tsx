@@ -1,4 +1,5 @@
-import { H2, Paragraph, ScrollView, YStack } from "tamagui";
+import { ScrollView, YStack } from "tamagui";
+import { Title, Body } from "@clockie/ui";
 
 import { Container } from "@/components/container";
 
@@ -7,8 +8,8 @@ export default function TabTwo() {
     <Container>
       <ScrollView flex={1} p="$4">
         <YStack py="$4">
-          <H2>Tab Two</H2>
-          <Paragraph opacity={0.7}>Discover more features and content</Paragraph>
+          <Title>Tab Two</Title>
+          <Body opacity={0.7}>Discover more features and content</Body>
         </YStack>
       </ScrollView>
     </Container>

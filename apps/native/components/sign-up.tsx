@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Spinner, Button, Input, Text, YStack } from "tamagui";
+import { YStack } from "tamagui";
+import { Button, Card, FormField, Spinner, Alert, Title } from "@clockie/ui";
 
 import { authClient } from "@/lib/auth-client";
 
@@ -34,35 +35,40 @@ export function SignUp() {
   }
 
   return (
-    <YStack gap="$3" p="$4" mt="$3" bg="$background" borderWidth={1} borderColor="$borderColor">
-      <Text fontSize="$6" fontWeight="bold">Create Account</Text>
+    <Card mt="$3">
+      <Title size="$6">Create Account</Title>
 
-      {error ? (
-        <YStack p="$2" bg="$red2">
-          <Text color="$red10" fontSize="$3">{error}</Text>
-        </YStack>
-      ) : null}
+      {error ? <Alert status="error" message={error} /> : null}
 
-      <Input placeholder="Name" value={name} onChangeText={setName} />
+      <YStack gap="$3">
+        <FormField
+          label="Name"
+          placeholder="Name"
+          value={name}
+          onChangeText={setName}
+        />
 
-      <Input
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
+        <FormField
+          label="Email"
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
 
-      <Input
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
+        <FormField
+          label="Password"
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
+      </YStack>
 
-      <Button onPress={handleSignUp} disabled={isLoading} theme="blue" opacity={isLoading ? 0.5 : 1}>
+      <Button onPress={handleSignUp} disabled={isLoading} opacity={isLoading ? 0.5 : 1}>
         {isLoading ? <Spinner size="small" /> : "Sign Up"}
       </Button>
-    </YStack>
+    </Card>
   );
 }
