@@ -1,6 +1,7 @@
 import { env } from "@clockie/env/native";
 import { ConvexBetterAuthProvider } from "@convex-dev/better-auth/react";
 import { DarkTheme, DefaultTheme, type Theme, ThemeProvider } from "@react-navigation/native";
+import { ToastProvider, ToastViewport } from "@tamagui/toast";
 import { ConvexReactClient } from "convex/react";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -59,17 +60,20 @@ export default function RootLayout() {
 
   return (
     <TamaguiProvider config={config} defaultTheme={isDarkColorScheme ? "dark" : "light"}>
-      <ConvexBetterAuthProvider client={convex} authClient={authClient}>
-        <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-          <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-          <GestureHandlerRootView style={{ flex: 1 }}>
-            <Stack>
-              <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-              <Stack.Screen name="modal" options={{ title: "Modal", presentation: "modal" }} />
-            </Stack>
-          </GestureHandlerRootView>
-        </ThemeProvider>
-      </ConvexBetterAuthProvider>
+      <ToastProvider>
+        <ConvexBetterAuthProvider client={convex} authClient={authClient}>
+          <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+            <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+            <GestureHandlerRootView style={{ flex: 1 }}>
+              <Stack>
+                <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
+                <Stack.Screen name="modal" options={{ title: "Modal", presentation: "modal" }} />
+              </Stack>
+            </GestureHandlerRootView>
+            <ToastViewport bottom="$6" left={0} right={0} />
+          </ThemeProvider>
+        </ConvexBetterAuthProvider>
+      </ToastProvider>
     </TamaguiProvider>
   );
 }

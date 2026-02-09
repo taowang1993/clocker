@@ -6,7 +6,7 @@ module.exports = function (api) {
       [
         "@tamagui/babel-plugin",
         {
-          components: ["tamagui"],
+          components: ["tamagui", "@clockie/ui"],
           config: "./tamagui.config.ts",
           disableExtraction: process.env.NODE_ENV === "development",
         },

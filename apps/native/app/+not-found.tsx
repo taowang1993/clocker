@@ -1,5 +1,6 @@
 import { Link, Stack } from "expo-router";
-import { Button, H3, Paragraph, Text, YStack } from "tamagui";
+import { Text, YStack } from "tamagui";
+import { Button, Title, Body } from "@clockie/ui";
 
 import { Container } from "@/components/container";
 
@@ -11,12 +12,12 @@ export default function NotFoundScreen() {
         <YStack flex={1} justify="center" items="center" p="$4">
           <YStack items="center" gap="$3">
             <Text fontSize={48}>🤔</Text>
-            <H3 text="center">Page Not Found</H3>
-            <Paragraph text="center" opacity={0.7}>
+            <Title text="center">Page Not Found</Title>
+            <Body text="center" opacity={0.7}>
               Sorry, the page you're looking for doesn't exist.
-            </Paragraph>
+            </Body>
             <Link href="/" asChild>
-              <Button theme="blue">Go to Home</Button>
+              <Button>Go to Home</Button>
             </Link>
           </YStack>
         </YStack>

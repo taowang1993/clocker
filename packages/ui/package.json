@@ -1,0 +1,38 @@
+{
+  "name": "@clockie/ui",
+  "version": "0.0.0",
+  "private": true,
+  "types": "types/index.d.ts",
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "module:jsx": "dist/jsx",
+  "react-native": "src/index.ts",
+  "files": ["types", "src", "dist"],
+  "sideEffects": ["*.css"],
+  "scripts": {
+    "build": "tamagui-build",
+    "dev": "tamagui-build --watch",
+    "watch": "tamagui-build --watch",
+    "check-types": "tsc -p tsconfig.json --noEmit",
+    "prepack": "pnpm run build"
+  },
+  "dependencies": {
+    "tamagui": "2.0.0-rc.7",
+    "@tamagui/button": "2.0.0-rc.7",
+    "@tamagui/config": "2.0.0-rc.7",
+    "@tamagui/input": "2.0.0-rc.7",
+    "@tamagui/separator": "2.0.0-rc.7",
+    "@tamagui/stacks": "2.0.0-rc.7",
+    "@tamagui/text": "2.0.0-rc.7",
+    "@tamagui/toast": "2.0.0-rc.7"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-native": ">=0.81"
+  },
+  "devDependencies": {
+    "@tamagui/build": "2.0.0-rc.7",
+    "@types/react": "~19.1.10",
+    "typescript": "catalog:"
+  }
+}

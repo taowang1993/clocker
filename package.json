@@ -13,7 +13,8 @@
     "dev:native": "turbo -F native dev",
     "dev:web": "turbo -F web dev",
     "dev:server": "turbo -F @clockie/backend dev",
-    "dev:setup": "turbo -F @clockie/backend dev:setup"
+    "dev:setup": "turbo -F @clockie/backend dev:setup",
+    "ci:check-ui": "pnpm --filter @clockie/ui build"
   },
   "dependencies": {
     "@clockie/env": "workspace:*",

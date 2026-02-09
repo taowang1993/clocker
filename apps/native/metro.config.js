@@ -7,6 +7,6 @@ const config = getDefaultConfig(__dirname);
 config.resolver.unstable_enablePackageExports = true;
 
 module.exports = withTamagui(config, {
-  components: ["tamagui"],
+  components: ["tamagui", "@clockie/ui"],
   config: "./tamagui.config.ts",
 });
