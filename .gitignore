@@ -79,5 +79,6 @@ packages/backend/convex/_generated
 packages/backend/convex/README.md
 apps/native/expo-env.d.ts
 apps/native/tamagui.generated.css
+apps/native/.tamagui
 apps/web/.tanstack
 apps/web/src/routeTree.gen.ts

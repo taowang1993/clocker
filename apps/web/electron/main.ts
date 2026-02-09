@@ -12,15 +12,13 @@ function createWindow() {
     displays.find((display) => display.internal === false) ??
     displays.find((display) => display.id !== primaryDisplay.id) ??
     primaryDisplay;
-  const { x, y, width, height } = targetDisplay.bounds;
+  const { x, y, width, height } = targetDisplay.workArea;
 
   const win = new BrowserWindow({
     x,
     y,
     width,
     height,
-    fullscreen: true,
-    fullscreenable: true,
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, "preload.mjs"),
