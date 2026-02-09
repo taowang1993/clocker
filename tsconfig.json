@@ -1,0 +1,3 @@
+{
+  "extends": "@clockie/config/tsconfig.base.json"
+}
