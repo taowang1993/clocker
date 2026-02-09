@@ -1,3 +1,5 @@
+import "../tamagui.generated.css";
+
 import { env } from "@clockie/env/native";
 import { ConvexBetterAuthProvider } from "@convex-dev/better-auth/react";
 import { DarkTheme, DefaultTheme, type Theme, ThemeProvider } from "@react-navigation/native";

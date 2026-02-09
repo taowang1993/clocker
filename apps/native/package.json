@@ -8,7 +8,10 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "prebuild": "expo prebuild",
-    "web": "expo start --web"
+    "web": "tamagui generate-css --output ./tamagui.generated.css && expo start --web",
+    "build:web": "tamagui generate-css --output ./tamagui.generated.css && expo export --platform web",
+    "build:web:optimized": "tamagui generate-css --output ./tamagui.generated.css && tamagui build --target web ./app -- expo export --platform web",
+    "tamagui:generate-css": "tamagui generate-css --output ./tamagui.generated.css"
   },
   "dependencies": {
     "@clockie/ui": "workspace:*",
@@ -59,6 +62,7 @@
   "devDependencies": {
     "@babel/core": "^7.26.10",
     "@clockie/config": "workspace:*",
+    "@tamagui/cli": "2.0.0-rc.7",
     "@types/react": "~19.1.10",
     "typescript": "catalog:"
   }
