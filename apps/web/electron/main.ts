@@ -12,22 +12,25 @@ function createWindow() {
     displays.find((display) => display.internal === false) ??
     displays.find((display) => display.id !== primaryDisplay.id) ??
     primaryDisplay;
-  const { x, y, width, height } = targetDisplay.workArea;
+  const { x, y } = targetDisplay.bounds;
 
   const win = new BrowserWindow({
     x,
     y,
-    width,
-    height,
-    autoHideMenuBar: true,
-    show: false,
+    width: 1200,
+    height: 800,
+    minWidth: 800,
+    minHeight: 600,
+    titleBarStyle: "hidden",
+    trafficLightPosition: { x: 16, y: 12 },
     webPreferences: {
       preload: path.join(__dirname, "preload.mjs"),
+      nodeIntegration: false,
+      contextIsolation: true,
+      sandbox: false,
     },
   });
 
-  win.setBounds({ x, y, width, height });
-  win.show();
   win.maximize();
 
   if (VITE_DEV_SERVER_URL) {
