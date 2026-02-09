@@ -1,68 +1,26 @@
 import { Link, Stack } from "expo-router";
-import { Text, View, StyleSheet } from "react-native";
+import { Button, H3, Paragraph, Text, YStack } from "tamagui";
 
 import { Container } from "@/components/container";
-import { NAV_THEME } from "@/lib/constants";
-import { useColorScheme } from "@/lib/use-color-scheme";
 
 export default function NotFoundScreen() {
-  const { colorScheme } = useColorScheme();
-  const theme = colorScheme === "dark" ? NAV_THEME.dark : NAV_THEME.light;
-
   return (
     <>
       <Stack.Screen options={{ title: "Oops!" }} />
       <Container>
-        <View style={styles.container}>
-          <View style={styles.content}>
-            <Text style={styles.emoji}>🤔</Text>
-            <Text style={[styles.title, { color: theme.text }]}>Page Not Found</Text>
-            <Text style={[styles.subtitle, { color: theme.text, opacity: 0.7 }]}>
+        <YStack flex={1} justify="center" items="center" p="$4">
+          <YStack items="center" gap="$3">
+            <Text fontSize={48}>🤔</Text>
+            <H3 text="center">Page Not Found</H3>
+            <Paragraph text="center" opacity={0.7}>
               Sorry, the page you're looking for doesn't exist.
-            </Text>
+            </Paragraph>
             <Link href="/" asChild>
-              <Text
-                style={[
-                  styles.link,
-                  { color: theme.primary, backgroundColor: `${theme.primary}1a` },
-                ]}
-              >
-                Go to Home
-              </Text>
+              <Button theme="blue">Go to Home</Button>
             </Link>
-          </View>
-        </View>
+          </YStack>
+        </YStack>
       </Container>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 16,
-  },
-  content: {
-    alignItems: "center",
-  },
-  emoji: {
-    fontSize: 48,
-    marginBottom: 16,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 8,
-    textAlign: "center",
-  },
-  subtitle: {
-    fontSize: 14,
-    textAlign: "center",
-    marginBottom: 24,
-  },
-  link: {
-    padding: 12,
-  },
-});

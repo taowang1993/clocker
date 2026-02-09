@@ -1,20 +1,9 @@
 import { useState } from "react";
-import {
-  ActivityIndicator,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  StyleSheet,
-} from "react-native";
+import { Spinner, Button, Input, Text, YStack } from "tamagui";
 
 import { authClient } from "@/lib/auth-client";
-import { NAV_THEME } from "@/lib/constants";
-import { useColorScheme } from "@/lib/use-color-scheme";
 
-function SignIn() {
-  const { colorScheme } = useColorScheme();
-  const theme = colorScheme === "dark" ? NAV_THEME.dark : NAV_THEME.light;
+export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -25,10 +14,7 @@ function SignIn() {
     setError(null);
 
     await authClient.signIn.email(
-      {
-        email,
-        password,
-      },
+      { email, password },
       {
         onError(error) {
           setError(error.error?.message || "Failed to sign in");
@@ -46,88 +32,33 @@ function SignIn() {
   }
 
   return (
-    <View style={[styles.card, { backgroundColor: theme.card, borderColor: theme.border }]}>
-      <Text style={[styles.title, { color: theme.text }]}>Sign In</Text>
+    <YStack gap="$3" p="$4" mt="$3" bg="$background" borderWidth={1} borderColor="$borderColor">
+      <Text fontSize="$6" fontWeight="bold">Sign In</Text>
 
       {error ? (
-        <View style={[styles.errorContainer, { backgroundColor: theme.notification + "20" }]}>
-          <Text style={[styles.errorText, { color: theme.notification }]}>{error}</Text>
-        </View>
+        <YStack p="$2" bg="$red2">
+          <Text color="$red10" fontSize="$3">{error}</Text>
+        </YStack>
       ) : null}
 
-      <TextInput
-        style={[
-          styles.input,
-          { color: theme.text, borderColor: theme.border, backgroundColor: theme.background },
-        ]}
+      <Input
         placeholder="Email"
-        placeholderTextColor={theme.text}
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
       />
 
-      <TextInput
-        style={[
-          styles.input,
-          { color: theme.text, borderColor: theme.border, backgroundColor: theme.background },
-        ]}
+      <Input
         placeholder="Password"
-        placeholderTextColor={theme.text}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
 
-      <TouchableOpacity
-        onPress={handleLogin}
-        disabled={isLoading}
-        style={[styles.button, { backgroundColor: theme.primary, opacity: isLoading ? 0.5 : 1 }]}
-      >
-        {isLoading ? (
-          <ActivityIndicator size="small" color="#ffffff" />
-        ) : (
-          <Text style={styles.buttonText}>Sign In</Text>
-        )}
-      </TouchableOpacity>
-    </View>
+      <Button onPress={handleLogin} disabled={isLoading} theme="blue" opacity={isLoading ? 0.5 : 1}>
+        {isLoading ? <Spinner size="small" /> : "Sign In"}
+      </Button>
+    </YStack>
   );
 }
-
-const styles = StyleSheet.create({
-  card: {
-    marginTop: 16,
-    padding: 16,
-    borderWidth: 1,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 12,
-  },
-  errorContainer: {
-    marginBottom: 12,
-    padding: 8,
-  },
-  errorText: {
-    fontSize: 14,
-  },
-  input: {
-    borderWidth: 1,
-    padding: 12,
-    fontSize: 16,
-    marginBottom: 12,
-  },
-  button: {
-    padding: 12,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonText: {
-    color: "#ffffff",
-    fontSize: 16,
-  },
-});
-
-export { SignIn };
