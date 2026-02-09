@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, screen } from "electron";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -6,9 +6,22 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
 
 function createWindow() {
+  const displays = screen.getAllDisplays();
+  const primaryDisplay = screen.getPrimaryDisplay();
+  const targetDisplay =
+    displays.find((display) => display.internal === false) ??
+    displays.find((display) => display.id !== primaryDisplay.id) ??
+    primaryDisplay;
+  const { x, y, width, height } = targetDisplay.bounds;
+
   const win = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    x,
+    y,
+    width,
+    height,
+    fullscreen: true,
+    fullscreenable: true,
+    autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, "preload.mjs"),
     },
