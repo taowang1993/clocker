@@ -1,9 +1,18 @@
-import { app, BrowserWindow, screen } from "electron";
+import { app, BrowserWindow, screen, shell } from "electron";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
+
+function isOAuthUrl(url: string) {
+  try {
+    const { hostname } = new URL(url);
+    return hostname === "accounts.google.com";
+  } catch {
+    return false;
+  }
+}
 
 function createWindow() {
   const displays = screen.getAllDisplays();
@@ -32,6 +41,23 @@ function createWindow() {
   });
 
   win.maximize();
+
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    if (isOAuthUrl(url)) {
+      return {
+        action: "allow",
+        overrideBrowserWindowOptions: {
+          width: 500,
+          height: 700,
+          titleBarStyle: "default",
+          autoHideMenuBar: true,
+          parent: win,
+        },
+      };
+    }
+    shell.openExternal(url);
+    return { action: "deny" };
+  });
 
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL);

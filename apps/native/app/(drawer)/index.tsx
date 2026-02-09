@@ -5,7 +5,6 @@ import { Circle, ScrollView, XStack, YStack } from "tamagui";
 
 import { Container } from "@/components/container";
 import { SignIn } from "@/components/sign-in";
-import { SignUp } from "@/components/sign-up";
 import { authClient } from "@/lib/auth-client";
 
 export default function Home() {
@@ -45,12 +44,7 @@ export default function Home() {
             </XStack>
           </Card>
 
-          {!user && (
-            <>
-              <SignIn />
-              <SignUp />
-            </>
-          )}
+          {!user && <SignIn />}
         </YStack>
       </ScrollView>
     </Container>
