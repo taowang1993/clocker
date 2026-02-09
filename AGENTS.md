@@ -50,6 +50,10 @@ WIP
 | `pnpm run dev:setup`   | Configure Convex   |
 | `pnpm run check-types` | Typecheck all apps |
 
+## PR Template
+
+When opening PRs, follow the template in `.github/PULL_REQUEST_TEMPLATE.md`.
+
 ## Documentation
 
 <!-- TAMAGUI-Docs-START -->
