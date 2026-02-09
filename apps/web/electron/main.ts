@@ -20,10 +20,15 @@ function createWindow() {
     width,
     height,
     autoHideMenuBar: true,
+    show: false,
     webPreferences: {
       preload: path.join(__dirname, "preload.mjs"),
     },
   });
+
+  win.setBounds({ x, y, width, height });
+  win.show();
+  win.maximize();
 
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL);
