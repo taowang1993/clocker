@@ -23,6 +23,7 @@ Clockie is a cross-platform personal AI assistant.
 
 ## Project Structure
 
+```
 apps
 ├── native
 │   ├── app
@@ -41,3 +42,4 @@ packages
 └── ui
     ├── src
     └── types
+```
