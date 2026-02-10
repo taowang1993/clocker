@@ -10,27 +10,34 @@ Clockie is a cross-platform personal AI assistant.
 | Mobile     | Expo + Expo Web      |
 | Mobile UI  | Tamagui              |
 | Desktop UI | Tailwind + Shadcn/ui |
-| Lists      | FlashList            |
-| State      | Zustand              |
 | BaaS       | Convex               |
-| Local DB   | SQLite + Drizzle     |
 | Auth       | Better-Auth          |
-| Payments   | Stripe               |
 | Build      | Turborepo            |
+
+## Planned / Optional
+
+- Lists: FlashList
+- State: Zustand
+- Local DB: SQLite + Drizzle + better-sqlite3
+- Payments: Stripe
 
 ## Project Structure
 
 apps
-├── native         # Mobile client (Expo)
+├── native
 │   ├── app
 │   ├── assets
 │   ├── components
 │   └── lib
-└── web            # Desktop client (React + Electron)
+└── web
+    ├── electron
     └── src
 packages
-├── backend        # Convex
+├── backend
 │   └── convex
-├── config         # Shared tsconfig
-└── env            # Environment variables
-    └── src
+├── config
+├── env
+│   └── src
+└── ui
+    ├── src
+    └── types
