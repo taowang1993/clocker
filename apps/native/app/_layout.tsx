@@ -32,7 +32,7 @@ const DARK_THEME: Theme = {
 };
 
 export const unstable_settings = {
-  initialRouteName: "(drawer)",
+  initialRouteName: "index",
 };
 
 const convex = new ConvexReactClient(env.EXPO_PUBLIC_CONVEX_URL, {
@@ -67,9 +67,11 @@ export default function RootLayout() {
           <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
             <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
             <GestureHandlerRootView style={{ flex: 1 }}>
-              <Stack>
-                <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-                <Stack.Screen name="modal" options={{ title: "Modal", presentation: "modal" }} />
+              <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="index" />
+                <Stack.Screen name="(drawer)" />
+                <Stack.Screen name="browser" />
+                <Stack.Screen name="modal" options={{ title: "Modal", presentation: "modal", headerShown: true }} />
               </Stack>
             </GestureHandlerRootView>
             <ToastViewport bottom="$6" left={0} right={0} />

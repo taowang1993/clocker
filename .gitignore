@@ -15,6 +15,10 @@ dist-electron
 build
 *.tsbuildinfo
 
+# Electron packaging
+apps/web/out
+apps/web/release
+
 # Environment variables
 .env
 .env*.local
@@ -54,10 +58,14 @@ coverage
 # Misc
 *.tgz
 .cache
+.vite
+.pnpm-store
 tmp
 temp
 
 # Expo / React Native
+apps/native/ios
+apps/native/android
 .expo
 .metro-health-check*
 *.jks
@@ -78,7 +86,7 @@ web-build
 packages/backend/convex/_generated
 packages/backend/convex/README.md
 apps/native/expo-env.d.ts
-apps/native/tamagui.generated.css
-apps/native/.tamagui
+tamagui.generated.css
+.tamagui
 apps/web/.tanstack
 apps/web/src/routeTree.gen.ts
