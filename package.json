@@ -11,10 +11,12 @@
     "build": "turbo build",
     "check-types": "turbo check-types",
     "dev:native": "turbo -F native dev",
+    "ios": "cd apps/native && npx expo run:ios",
     "dev:web": "turbo -F web dev",
     "dev:server": "turbo -F @clockie/backend dev",
     "dev:setup": "turbo -F @clockie/backend dev:setup",
-    "ci:check-ui": "pnpm --filter @clockie/ui build"
+    "ci:check-ui": "pnpm --filter @clockie/ui build",
+    "check:tamagui-singleton": "node scripts/check-tamagui-singleton.mjs"
   },
   "dependencies": {
     "@clockie/env": "workspace:*",
@@ -28,6 +30,10 @@
   },
   "packageManager": "pnpm@10.28.2",
   "pnpm": {
-    "onlyBuiltDependencies": ["electron", "esbuild"]
+    "onlyBuiltDependencies": ["electron", "esbuild"],
+    "overrides": {
+      "react": "19.1.0",
+      "react-dom": "19.1.0"
+    }
   }
 }

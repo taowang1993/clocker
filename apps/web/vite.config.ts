@@ -16,6 +16,18 @@ export default defineConfig({
       },
       preload: {
         input: "electron/preload.ts",
+        vite: {
+          build: {
+            rollupOptions: {
+              output: {
+                format: "cjs",
+                entryFileNames: "preload.cjs",
+                chunkFileNames: "[name].cjs",
+                inlineDynamicImports: true,
+              },
+            },
+          },
+        },
       },
     }),
   ],

@@ -12,6 +12,7 @@ import authConfig from "./auth.config";
 
 const siteUrl = process.env.SITE_URL!;
 const nativeAppUrl = process.env.NATIVE_APP_URL || "mybettertapp://";
+const expoScheme = process.env.EXPO_PUBLIC_SCHEME ?? nativeAppUrl.replace(/:\/\/.*$/, "");
 
 export const authComponent = createClient<DataModel>(components.betterAuth);
 
@@ -19,9 +20,20 @@ function createAuth(ctx: GenericCtx<DataModel>) {
   return betterAuth({
     trustedOrigins: [
       siteUrl,
+      "http://localhost:3001",
+      "http://127.0.0.1:3001",
       nativeAppUrl,
+      `${expoScheme}://`,
+      "http://localhost:8081",
+      "http://localhost:8082",
       ...(process.env.NODE_ENV === "development"
-        ? ["exp://", "exp://**", "exp://192.168.*.*:*/**"]
+        ? [
+            "exp://*/*",
+            "exp://10.0.0.*:*/*",
+            "exp://192.168.*.*:*/*",
+            "exp://172.*.*.*:*/*",
+            "exp://localhost:*/*",
+          ]
         : []),
     ],
     database: authComponent.adapter(ctx),
