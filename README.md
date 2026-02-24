@@ -1,6 +1,6 @@
-# Clockie
+# Clocker
 
-Clockie is a cross-platform personal AI assistant.
+Clocker is a cross-platform personal AI assistant.
 
 ## Tech Stack
 
